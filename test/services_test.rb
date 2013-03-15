@@ -304,7 +304,7 @@ class ServicesTest < Test::Unit::TestCase
     assert_equal 40.75004981300049, result.coordinates[0]
     assert_equal -73.99423889799965, result.coordinates[1]
   end
-  
+
   def test_esri_results_component_when_reverse_geocoding
     Geocoder.configure(:lookup => :esri)
     result = Geocoder.search([45.423733, -75.676333]).first
@@ -315,6 +315,15 @@ class ServicesTest < Test::Unit::TestCase
     assert_equal "Île-de-France", result.state
     assert_equal 48.858129997357558, result.coordinates[0]
     assert_equal 2.2956200048981574, result.coordinates[1]
+  end
+
+  # --- Postcode Anywhere
+
+  def test_postcode_anywhere_geocode_postcode
+    Geocoder.configure(:lookup => :postcode_anywhere)
+    set_api_key!(:postcode_anywhere)
+    result = Geocoder.coordinates('N1 4EN')
+    assert_equal [52.2327, -2.2697], result
   end
 
 end

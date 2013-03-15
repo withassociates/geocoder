@@ -31,6 +31,7 @@ module Geocoder
         :nominatim,
         :mapquest,
         :ovi,
+        :postcode_anywhere,
         :test
       ]
     end
